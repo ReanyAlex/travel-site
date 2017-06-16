@@ -4,6 +4,7 @@ var gulp = require('gulp'),
 
 //watches for when changes are made to watched files below
 gulp.task('watch',function() {
+  
   //sets up browserSync options
   browserSync.init({
     notify: false,
@@ -19,8 +20,8 @@ gulp.task('watch',function() {
   watch('./app/assets/styles/**/*.css', function() {
     gulp.start("cssInject")
   })
-
 })
+
 /*changes the css in the browser when changes are made without the need
 of a refresh. It contains middleware that calls gulp task styles which
 is contained in the styles.js file*/

@@ -3,12 +3,18 @@ var gulp = require('gulp'),
     autoprefixer = require('autoprefixer'),
     cssVars = require('postcss-simple-vars'),
     nested = require('postcss-nested'),
-    cssImport = require('postcss-import');
+    cssImport = require('postcss-import'),
+    mixins = require('postcss-mixins')
 
 //this is called by the gulp watch function in watch.js file
 gulp.task("styles", function() {
   return gulp.src('./app/assets/styles/styles.css')
-  //different plugins that add functionality to postcss
-  .pipe(postcss([cssImport, autoprefixer, cssVars, nested]))
-  .pipe(gulp.dest('./app/temp/styles'))
+  //different plugins that add functionality to postcss order seems to matter
+  .pipe(postcss([cssImport, mixins, autoprefixer, cssVars, nested]))
+  //if there is an error logs a message and keeps watch running
+  .on('error', function(err) {
+    console.log(err.toString());
+    this.emit('end');
+  })
+  .pipe(gulp.dest('./app/temp/styles'),console.log("done"))
 })
