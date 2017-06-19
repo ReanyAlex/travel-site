@@ -4,7 +4,7 @@ var gulp = require('gulp'),
 
 //watches for when changes are made to watched files below
 gulp.task('watch',function() {
-  
+
   //sets up browserSync options
   browserSync.init({
     notify: false,
