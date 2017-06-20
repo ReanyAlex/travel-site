@@ -16,10 +16,10 @@ class StickyHeader {
     this.refreshWaypoints();
   }
 
-  refreshWaypoints(){
-    this.lazyImages.load(function() {
-      Waypoint.freshAll();
-    })
+  refreshWaypoints() {
+    this.lazyImages.on("load", function() {
+      Waypoint.refreshAll();
+    });
   }
 
   createHeaderWaypoint(){
