@@ -20,6 +20,11 @@ gulp.task('watch',function() {
   watch('./app/assets/styles/**/*.css', function() {
     gulp.start("cssInject")
   })
+
+  watch('./app/assets/scripts/**/*.js', function() {
+    gulp.start("scriptRefresh");
+  })
+
 })
 
 /*changes the css in the browser when changes are made without the need
@@ -28,4 +33,8 @@ is contained in the styles.js file*/
 gulp.task('cssInject',['styles'], function() {
   return gulp.src('./app/assets/styles/styles.css')
   .pipe(browserSync.stream());
+})
+
+gulp.task('scriptRefresh',['scripts'], function() {
+  browserSync.reload();
 })
